@@ -6,6 +6,13 @@ const days = [
   "Thursday",
   "Friday",
   "Saturday",
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
 ];
 const months = [
   "January",
@@ -22,6 +29,7 @@ const months = [
   "December",
 ];
 const d = new Date();
+
 const temperatures = document.querySelector(".temp");
 const descriptionValue = document.querySelector(".description");
 const dateAndTime = document.querySelector(".date-time");
@@ -34,7 +42,6 @@ const fetchWeatherData = async () => {
     .then((res) => res.json())
     .then((data) => data)
     .catch((err) => console.error(err));
-
   temperatures.innerHTML = `${data.temperature.replace("+", "")}`;
   descriptionValue.innerHTML = `${data.description}`;
   dateAndTime.innerHTML = `${days[d.getDay()]}, ${d.getDate()} ${
@@ -56,12 +63,12 @@ const fetchWeatherData = async () => {
     ""
   )}</div> 
   <div class ="forecast-wind2"> Wind: ${data.forecast[1].wind}</div>`;
-  dayThree.innerHTML = `<div class ="day-forecast">${
-    days[d.getDay() + Number(data.forecast[2].day)]
-  }</div> <div class = "forecast-temp3">${data.forecast[2].temperature.replace(
+  dayThree.innerHTML = `<div class ="day-forecast">${days[d.getDay() + Number(data.forecast[2].day)]}
+  </div> <div class = "forecast-temp3">${data.forecast[2].temperature.replace(
     "+",
     ""
-  )}</div> 
+  )}
+  </div> 
   <div class ="forecast-wind3"> Wind: ${data.forecast[2].wind}</div>`;
 };
 fetchWeatherData();
